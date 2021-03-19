@@ -14,7 +14,7 @@ export class CarDetailComponent implements OnInit {
 
   carImages:CarImage[];
   cars:Car[];
-  imageUrl = 'https://localhost:44348/';
+  imageUrl = 'https://localhost:44384';
   dataLoaded =false;
 
   constructor(private carImageService:CarImageService,
@@ -27,8 +27,7 @@ export class CarDetailComponent implements OnInit {
         this.getCarDetails(params["carId"]);
       }
     })
-    
-    
+ 
   }
 
   //Bunu fazla yazdım sanırım
@@ -58,6 +57,7 @@ export class CarDetailComponent implements OnInit {
       return "carousel-item";
     }
   }
+  
   getBack(){
     this.carService.getCars();
   }

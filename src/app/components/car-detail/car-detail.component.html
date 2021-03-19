@@ -1,38 +1,105 @@
-<div class="alert alert-secondary" role="alert">
-  <h4>Araba Bilgisi</h4>
-</div>
+
+
+<!-- 
 <div class="container">
-<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-<div class="carousel-indicators">
-<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-</div>
-<div class="carousel-inner" >
-<div class="carousel-item active" *ngFor="let car of cars">
-  <img src="{{imageUrl}}/{{car.imagePath}}" class="d-block w-100" alt="..." >
-</div>
-</div>
-<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"  data-bs-slide="prev">
-<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-<span class="visually-hidden">Previous</span>
-</button>
-<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"  data-bs-slide="next">
-<span class="carousel-control-next-icon" aria-hidden="true"></span>
-<span class="visually-hidden">Next</span>
-</button>
-</div>
-</div>
-<br>
-<div class="container">
-  <div class="row row-cols-2" *ngFor="let car of cars">
-    <div class="col" ><h5>Araba Adı: {{car.description}}</h5></div>
-    <div class="col" ><h5>Renk: {{car.colorName}}</h5></div>
-    <br> <br>
-    <div class="col" ><h5>Model Yılı: {{car.modelYear}}</h5></div>
-    <br> <br>
-    <div class="col" ><h5>Günlük Kiralama Fiyatı: {{car.dailyPrice}}</h5></div>
-   
-    
+  <div class="col-sm"></div>
+
+  <div class="col-sm">
+    <div *ngFor="let car of cars" class="card" style="width: 18rem">
+      <div *ngFor="let image of carImages">
+        <img
+          src= "{{imageUrl}}{{image.imagePath}}"
+          class=""
+          style="height: 100%; width: 100%; object-fit: contain"
+          [alt]="imageUrl + image.imagePath"
+        />
+      </div>
+
+      <div class="container">
+        <h5 class="card-title">{{ car.description }}</h5>
+      </div>
+      <ul class="list-group list-group-flush">
+        
+        <li class="list-group-item">
+          <mark>Marka</mark> : {{ car.brandName }}
+        </li>
+        <li class="list-group-item"><mark>Renk</mark> : {{ car.colorName }}</li>
+        <li class="list-group-item">
+          <mark>Model </mark> : {{ car.modelYear }}
+        </li>
+        <li class="list-group-item">
+          <mark>Günlük Kiralama Fiyatı </mark>: {{ car.dailyPrice }}
+        </li>
+      </ul>
+    </div>
+    <div class="card-body">
+      <a
+        routerLink="/cars/rent"
+        class="card-link btn btn-primary"
+        style="align-items: center"
+        >Drive Now!</a
+      >
+    </div>
+    <div class="col-md-4"></div>
   </div>
 </div>
+ -->
+
+
+
+
+
+
+ <div *ngIf="dataLoaded==false" class="d-flex justify-content-center">
+  <div class="spinner-border text-success" role="status">
+      <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+<div *ngIf="dataLoaded==true" class="card mb-3">
+
+  <!-- <div *ngFor="let car of cars" class="card-header text-center">
+    <strong>
+        {{car.brandName}} - {{car.modelYear}}
+    </strong>
+  </div> -->
+
+<br>
+  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div *ngFor="let carImage of carImages let i = index" [class]="getSliderClassName(i)">
+        <img src="{{imageUrl}}{{carImage.imagePath}}" class="d-block w-100" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div> 
+
+
+    <table class="table table-success table-striped">
+      <thead>
+          <tr>
+              <th>Araba Numarası</th>
+              <th>Marka</th>
+              <th>Renk</th>
+              <th>Model</th>
+              <th>Günlük Kirası</th>
+              <th>Açıklama</th>
+          </tr>
+      </thead>
+      <tr *ngFor="let car of cars">
+          <td>{{car.carId}}</td>
+          <td>{{car.brandName}}</td>
+          <td>{{car.colorName}}</td>
+          <td>{{car.modelYear}}</td>
+          <td>{{car.dailyPrice}}</td>
+          <td>{{car.description}}</td>
+      </tr>
+  </table>
+</div>   
+

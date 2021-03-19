@@ -14,13 +14,17 @@ const routes: Routes = [
   // {path:"cars/brand/:brandId", component:CarComponent},
 
   // {path:"cars/cardetail/:carId", component:CarDetailComponent}
-  {path :"", pathMatch:"full", component: CarComponent},
-  {path: "cars", component: CarComponent},
+  {path:"", pathMatch:"full", component: CarComponent},
+  {path:"cars", component: CarComponent},
   {path:"brands",component: BrandComponent},
   {path:"colors",component: ColorComponent},
   {path:"cars/brand/:brandId", component: CarComponent},
   {path:"cars/color/:colorId", component:CarComponent},
-  {path:"cars/cardetails/:carId",component:CarDetailComponent}
+  {path:"cars/cardetail/:carId",component:CarDetailComponent},
+
+
+  {path:"customer", component: CustomerComponent },
+  {path:"rental", component: RentalComponent }
 
 ];
 

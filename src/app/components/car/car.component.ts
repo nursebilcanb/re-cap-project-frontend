@@ -10,8 +10,9 @@ import { CarService } from 'src/app/services/car.service';
 })
 export class CarComponent implements OnInit {
 
+  title ="Araç Listesi"
   cars:Car[]=[];
-  imageUrl = 'https://localhost:44348/'
+  imageUrl = "https://localhost:44384"
   dataLoaded = false;
 
   constructor(private carService:CarService, 
@@ -25,10 +26,14 @@ export class CarComponent implements OnInit {
       else if(params["brandId"]){
         this.getCarsByBrandId(params["brandId"])
       }
+      else if(params["carId"]){
+        this.getCarDetails(params["carId"]);
+      }
       else{
         this.getCars()
       }
     })
+    
   }
 
   getCars(){
@@ -57,8 +62,5 @@ export class CarComponent implements OnInit {
       this.dataLoaded=true;
     });
   }
-
- 
-
   
 }
