@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Brand } from 'src/app/models/brand';
 import { BrandService } from 'src/app/services/brand.service';
+import { CarImageService } from 'src/app/services/car-image.service';
 
 @Component({
   selector: 'app-brand',
@@ -11,11 +12,10 @@ export class BrandComponent implements OnInit {
 
   brands:Brand[]=[];
   currentBrand:Brand;
-
-
   dataLoaded=false;
+  filterText="";
 
-  constructor(private brandService:BrandService) { }
+  constructor(private brandService:BrandService,private carImageService:CarImageService) { }
 
   ngOnInit(): void {
     this.getBrands();
@@ -41,5 +41,13 @@ export class BrandComponent implements OnInit {
     }
   }
 
+  getSliderClassName(index:number){
+    if(index == 0){
+      return "carousel-item active";
+    } else {
+      return "carousel-item";
+    }
+  }
 
+  
 }

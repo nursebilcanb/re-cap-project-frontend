@@ -78,9 +78,10 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
+    </div>  
   </div> 
 
-
+<!-- 
     <table class="table table-success table-striped">
       <thead>
           <tr>
@@ -100,6 +101,27 @@
           <td>{{car.dailyPrice}}</td>
           <td>{{car.description}}</td>
       </tr>
-  </table>
-</div>   
+  </table>  -->
+
+
+ <table class="table table-success table-striped">
+  <body>
+  <ul *ngIf="dataLoaded==true" class="list-group">
+    <li (click)="setCurrentCar(car)" routerLink="/cars/cardetail/{{car.carId}}"  
+    [class]="getCurrentCarClass(car)">
+           <tr><strong>Marka: </strong> {{car.brandName}}</tr>
+           <tr><strong>Model: </strong> {{car.modelYear}}</tr>
+           <tr><strong>Renk: </strong> {{car.colorName}}</tr>
+           <tr><strong>Günlük Kiralama Fiyatı: </strong> {{car.dailyPrice}}</tr>
+           <tr><strong>Açıklama: </strong> {{car.description}}</tr>
+  </li>
+  </ul>
+</body>
+</table>  
+
+  <li routerLink="/cars" class="list-group-item"><button type="button" 
+    class="btn btn-success">Ana sayfaya dön</button></li>
+
+  
+
 

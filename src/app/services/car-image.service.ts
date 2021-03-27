@@ -9,9 +9,7 @@ import { ListResponseModel } from '../models/listResponseModel';
 })
 export class CarImageService {
 
-  //!!!!!!!!!!!!!!!!!!!!!!!!!
   apiUrl="https://localhost:44384/api/";
-  //!!!!!!!!!!!!!!!!!!!!!!!!!
 
   constructor(private httpClient:HttpClient) { }
 
@@ -24,4 +22,5 @@ export class CarImageService {
     let newPath = this.apiUrl+ "carimages/getimagebycarid?carId="+carId;
     return this.httpClient.get<ListResponseModel<CarImage>>(newPath);
   }
+
 }

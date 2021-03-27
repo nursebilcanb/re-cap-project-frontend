@@ -26,6 +26,19 @@
 
 
 <br>
+<br>
+<div class="mb-3">
+  <label for="filterText" class="form-label">Araç Ara</label>
+  <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText"
+   placeholder="arama ifadesi giriniz">
+</div>
+<div *ngIf="filterText" class="alert alert-success">
+  {{filterText}} aradınız
+</div>
+
+<app-car-filter></app-car-filter>
+
+<br>
 <h3>{{title}}</h3>
 <br>
 <div *ngIf="dataLoaded==false" class="spinner-border text-primary" role="status">
@@ -33,24 +46,23 @@
 </div>
 
 <div class="row">
-  <div *ngFor="let car of cars" class="card" style="width: 18rem;">
+  <div *ngFor="let car of cars |carFilterPipe:filterText " class="card" style="width: 18rem;">
     <img src="{{imageUrl}}{{car.imagePath}}" routerLink="/cars/cardetail/{{car.carId}}" class="card-img-top">
     <div class="card-body">
       <h5 class="card-title">{{car.description}}</h5>
     </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Marka: {{car.brandName}}</li>
-      <li class="list-group-item"> Model: {{car.modelYear}}</li>
-      <li class="list-group-item"> Günlük Fiyat: {{car.dailyPrice}}</li>
-    </ul>
+   <ul class="list-group list-group-flush">
+        <li class="list-group-item">Marka: {{car.brandName}} </li>
+        <li class="list-group-item"> Model: {{car.modelYear}}</li>
+        <li class="list-group-item"> Günlük Fiyat: {{car.dailyPrice}}</li>
+   </ul>
     <div class="card-body">
       <section style="float:left">
         <button type="button" class="btn btn-secondary" routerLink="/cars/cardetail/{{car.carId}}">İncele</button>
       </section>
       <section style="float:right">
-        <button type="button" class="btn btn-success">Kirala</button>
+        <button (click)="getRent(car)" type="button" class="btn btn-success">Kirala</button>
       </section>
-
     </div>
   </div>
 </div>

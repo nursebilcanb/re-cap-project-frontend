@@ -13,8 +13,9 @@ import { CarService } from 'src/app/services/car.service';
 export class CarDetailComponent implements OnInit {
 
   carImages:CarImage[];
-  cars:Car[];
-  imageUrl = 'https://localhost:44384';
+  car:Car;
+  currentCar:Car;
+  imageUrl = 'https://localhost:44384/Images/';
   dataLoaded =false;
 
   constructor(private carImageService:CarImageService,
@@ -44,9 +45,11 @@ export class CarDetailComponent implements OnInit {
       this.dataLoaded=true;
     })
   }
+
+
   getCarDetails(carId:number){
     this.carService.getCarDetails(carId).subscribe(response =>{
-      this.cars = response.data;
+      this.car = response.data[0];
       this.dataLoaded=true;
     })
   }
@@ -58,7 +61,17 @@ export class CarDetailComponent implements OnInit {
     }
   }
   
-  getBack(){
-    this.carService.getCars();
+
+  setCurrentCar(car:Car){
+    this.currentCar = car;    
+  }
+
+  getCurrentCarClass(car:Car){
+    if(car == this.currentCar){
+      return "list-group-item active"
+    }
+    else{
+      return "list-group-item"
+    }
   }
 }

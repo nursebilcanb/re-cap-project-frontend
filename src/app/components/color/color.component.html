@@ -1,7 +1,26 @@
+<br>
+<br>
+<br>
+  
+ <div class="d-grid gap-2">
+   <button class="btn btn-success" type="button">Renkler</button>
+ </div>
+<br>
+  <div class="mb-3">
+    <label for="filterText" class="form-label">Renk Ara</label>
+    <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText"
+     placeholder="renk ara">
+  </div>
+  <div *ngIf="filterText" class="alert alert-success">
+    {{filterText}} aradınız
+  </div> 
+
+<br>
 <ul class="list-group">
     <li (click)="setCurrentColor(color)" 
     routerLink= "/cars/color/{{color.colorId}}"
-    *ngFor="let color of colors" 
+    *ngFor="let color of colors |colorFilterPipe:filterText" 
     [class]="getCurrentColorClass(color)">{{color.colorName}}</li>
   </ul>
+
 

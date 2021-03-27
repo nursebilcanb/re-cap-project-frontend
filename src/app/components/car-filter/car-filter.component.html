@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-md-3">
+        <select [(ngModel)]="currentBrand" class="form-select" aria-label="Default select example">
+            <option [selected]="IsCurrentBrandNull()" [value]="undefined">Bir marka seçiniz</option>
+            <option *ngFor="let brand of brands" [value]="brand.brandId" [selected]="getCurrentBrand(brand)">{{brand.brandName}}</option>
+        </select>
+    </div>
+    <div class="col-md-3">
+        <select [(ngModel)]="currentColor" class="form-select" aria-label="Default select example">
+            <option [selected]="IsCurrentColorNull()" [value]="undefined">Bir renk seçiniz</option>
+            <option *ngFor="let color of colors" [value]="color.colorId" [selected]="getCurrentColor(color)">{{color.colorName}}</option>
+        </select>
+    </div>
+    <div class="col-md-2">
+        <button [routerLink]="getRouterLink()" type="button" class="btn btn-success">
+            Filtrele
+        </button>
+    </div> 
+    <!-- <div class="col col-2">
+        <div class="btn-group">
+          <button
+            routerLink="/cars/filter/brand/{{ currentBrand}}/color/{{ currentColor }}"
+            type="button"
+            class="btn btn-warning">
+            Filtrele
+          </button>
+        </div>
+    </div> -->
+</div>
