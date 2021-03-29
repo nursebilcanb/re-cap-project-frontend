@@ -63,7 +63,8 @@
     </strong>
   </div> -->
 
-<br>
+<div *ngIf="dataLoaded == true" class="mx-auto">
+  <br>
   <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div *ngFor="let carImage of carImages let i = index" [class]="getSliderClassName(i)">
@@ -80,6 +81,54 @@
     </button>
     </div>  
   </div> 
+
+  <table class="table table-success table-striped">
+    <body>
+    <ul *ngIf="dataLoaded==true" class="list-group">
+      <li (click)="setCurrentCar(car)" routerLink="/cars/cardetail/{{car?.carId}}"  
+      [class]="getCurrentCarClass(car)">
+             <tr><strong>Marka: </strong> {{car?.brandName}}</tr>
+             <tr><strong>Model: </strong> {{car?.modelYear}}</tr>
+             <tr><strong>Renk: </strong> {{car?.colorName}}</tr>
+             <tr><strong>Günlük Kiralama Fiyatı: </strong> {{car?.dailyPrice |currency : 'TRY':'symbol-narrow':'1.2-2'}}</tr>
+             <tr><strong>Açıklama: </strong> {{car?.description}}</tr>
+    </li>
+    </ul>
+  </body>
+  </table>  
+
+
+  <div class="d-grid gap-2">
+    <button  routerLink="/cars/rental/{{car.carId}}" 
+     type="button"
+     class="btn btn-success"
+     data-bs-toggle="modal"
+     data-bs-target="#exampleModal"
+   >
+     Aracı Kirala
+   </button>
+ </div>  
+
+  <div class="card-body d-grid gap-2 mx-auto">
+    <div *ngIf="car?.status" class="btn-group me-2">
+      <div style="margin: auto;">
+        <div
+        class="modal fade"
+        id="rentCar"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+>
+        <app-rental [car]="car"></app-rental>
+      </div>
+    </div>
+  </div>
+  <div class="d-grid gap-2 mb-2" *ngIf="!car?.status">
+    <div class="alert alert-danger">Araç Şu an Kiralanamaz</div>
+  </div>
+
+</div>
+
 
 <!-- 
     <table class="table table-success table-striped">
@@ -104,23 +153,28 @@
   </table>  -->
 
 
- <table class="table table-success table-striped">
-  <body>
-  <ul *ngIf="dataLoaded==true" class="list-group">
-    <li (click)="setCurrentCar(car)" routerLink="/cars/cardetail/{{car.carId}}"  
-    [class]="getCurrentCarClass(car)">
-           <tr><strong>Marka: </strong> {{car.brandName}}</tr>
-           <tr><strong>Model: </strong> {{car.modelYear}}</tr>
-           <tr><strong>Renk: </strong> {{car.colorName}}</tr>
-           <tr><strong>Günlük Kiralama Fiyatı: </strong> {{car.dailyPrice}}</tr>
-           <tr><strong>Açıklama: </strong> {{car.description}}</tr>
-  </li>
-  </ul>
-</body>
-</table>  
+ 
 
-  <li routerLink="/cars" class="list-group-item"><button type="button" 
-    class="btn btn-success">Ana sayfaya dön</button></li>
+
+<!-- 
+ <div class="row">
+  <div class="col-md-6">
+    <section style="float:left;">
+      <li routerLink="/cars" class="list-group-item"><button type="button" 
+        class="btn btn-success">Ana sayfaya dön</button></li>
+    </section>
+  </div>
+  <div class="col-md-6">
+     <section style="float:right;">
+      <li routerLink="/rental/{{car.carId}}" class="list-group-item"><button type="button" 
+        class="btn btn-success" >Aracı Kirala</button></li>
+    </section> 
+  </div>
+</div>  -->
+
+
+
+  
 
   
 

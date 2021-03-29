@@ -1,23 +1,104 @@
-<br>
-<h2 class="text-center">Kiralama Listesi</h2>
-<div *ngIf="dataLoaded==false" class="spinner-border text-primary" role="status">
-    <span class="visually-hidden">Loading...</span>
+ <!-- <div class="d-grid gap-2">
+   <button   routerLink="/cars/rental/{{car.carId}}" 
+    type="button"
+    class="btn btn-success"
+    data-bs-toggle="modal"
+    data-bs-target="#exampleModal"
+  >
+    Aracı Kirala
+  </button>
+</div>   -->
+
+
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          {{ car?.brandName }} - {{ car?.colorName }} | Aracı Kirala
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group row mb-2">
+          <label for="automatic-output" class="col-4 col-form-label"
+            >Günlük Fiyat</label
+          >
+           <div class="col-8">
+            <input
+              type="number"
+              disabled="disabled"
+              class="form-control"
+             [value]="car?.dailyPrice | currency: '₺'"
+            /> 
+          </div> 
+        </div>
+        <div class="form-group row mb-2">
+          <label for="customer-input" class="col-4 col-form-label"
+            >Müşteri</label
+          >
+          <div class="col-8">
+            <select class="form-select" [(ngModel)]="customerId">
+              <option
+                [ngValue]="customer.customerId"
+                *ngFor="let customer of customers"
+              >
+                {{ customer.firstName }} {{ customer.lastName }} |
+                {{ customer.companyName }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row mb-2">
+          <label for="example-date-input" class="col-4 col-form-label"
+            >Kiralanan Tarih</label
+          >
+          <div class="col-8">
+            <input
+              (change)="onChangeEvent($event)"
+              min="{{ getRentMinDate() }}"
+              [(ngModel)]="rentDate"
+              type="date"
+              class="form-control"
+              id="rent-date"
+              placeholder="Bir gün seçiniz."
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="example-date-input" class="col-4 col-form-label"
+            >Teslim Tarihi</label
+          >
+          <div class="col-8">
+            <input
+              disabled="{{ !firstDateSelected }}"
+              min="{{ getReturnMinDate() }}"
+              max="{{ getReturnMaxDate() }}"
+              [(ngModel)]="returnDate"
+              type="date"
+              class="form-control"
+              id="return-date"
+              placeholder="Bir gün seçiniz."
+            />
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Vazgeç
+        </button>
+        <button
+          data-bs-dismiss="modal"
+          (click)="createRental()"
+          type="button"
+          class="btn btn-success"
+        >
+          Kirala
+        </button>
+      </div>
+    </div>
   </div>
-<table *ngIf="dataLoaded==true" class="table">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Marka</th>
-            <th>Müşteri</th>
-            <th>Kiralama Tarihi</th>
-            <th>Teslim Alma Tarihi</th>
-        </tr>
-    </thead>
-    <tr *ngFor="let rental of rentals">
-        <td>{{rental.rentalId}}</td>
-        <td>{{rental.brandName}}</td>
-        <td>{{rental.firstName + " " +rental.lastName}}</td>
-        <td>{{rental.rentDate}}</td>
-        <td>{{rental.returnDate}}</td>
-    </tr>
-</table>
