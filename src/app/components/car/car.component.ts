@@ -81,7 +81,7 @@ export class CarComponent implements OnInit {
     })
   }
   
-  getRent(car:Car){
-    this.toastrService.success("Sepete eklendi",car.brandName)
-  }
+  // getRent(car:Car){
+  //   this.toastrService.success("Sepete eklendi",car.brandName)
+  // }
 }

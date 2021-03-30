@@ -23,4 +23,8 @@ export class RentalService {
     return this.httpClient.post(newPath,rental).subscribe();
   }
   
+  getRentalById(carId:number):Observable<ListResponseModel<Rental>>{
+    let newPath = this.apiUrl+"rentals/getbycarid?carId="+carId;
+    return this.httpClient.get<ListResponseModel<Rental>>(newPath);
+  }
 }

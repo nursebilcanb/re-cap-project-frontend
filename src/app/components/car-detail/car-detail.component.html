@@ -110,7 +110,7 @@
  </div>  
 
   <div class="card-body d-grid gap-2 mx-auto">
-    <div *ngIf="car?.status" class="btn-group me-2">
+    <div *ngIf="car.status==true" class="btn-group me-2">
       <div style="margin: auto;">
         <div
         class="modal fade"
@@ -123,7 +123,7 @@
       </div>
     </div>
   </div>
-  <div class="d-grid gap-2 mb-2" *ngIf="!car?.status">
+  <div class="d-grid gap-2 mb-2" *ngIf="car.status==false">
     <div class="alert alert-danger">Araç Şu an Kiralanamaz</div>
   </div>
 

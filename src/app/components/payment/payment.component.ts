@@ -98,8 +98,9 @@ export class PaymentComponent implements OnInit {
     this.cardExist = await this.isCardExist(verifyCreditCard);
     if(this.cardExist){
       this.creditCard = await this.getCreditCardByCardNumber(this.cardNumber);
-      if(this.moneyInTheCard as number >= this.paymentAmount){
-        this.moneyInTheCard = this.moneyInTheCard as number - this.paymentAmount;
+      console.log(this.creditCard);
+      if(this.creditCard.moneyInTheCard as number >= this.paymentAmount){
+        this.creditCard.moneyInTheCard = this.creditCard.moneyInTheCard as number - this.paymentAmount;
         this.updateCard(verifyCreditCard);
         this.rentalService.addRental(this.rental);
         this.toastrService.success('Arabayı kiraladınız','İşlem başarılı');

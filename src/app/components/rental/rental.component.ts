@@ -17,6 +17,7 @@ import { RentalService } from 'src/app/services/rental.service';
 })
 export class RentalComponent implements OnInit {
 
+  carId:number;
   customers:Customer[];
   cars:Car[]
   rentals:Rental[]=[];
@@ -44,6 +45,7 @@ export class RentalComponent implements OnInit {
   ngOnInit(): void {
      this.activatedRoute.params.subscribe(params => {
     if(params["carId"]){
+      this.carId = params["carId"];
       this.getCars(params["carId"]);
     }
   })
@@ -70,6 +72,26 @@ export class RentalComponent implements OnInit {
     })
   }
 
+  checkRentableCar(){
+    this.rentalService.getRentalById(this.carId).subscribe(response => {
+      if(response.data[0]==null){
+        this.createRental();
+        return true;
+      }
+      let lastItem = response.data[response.data.length-1]
+      if(lastItem.returnDate==null){
+        return this.toastrService.error('Bu araç teslim edilmemiş','Teslim Tarihi Geçersiz');
+      }
+      let returnDate = new Date(lastItem.returnDate);
+      let rentDate = new Date(this.rentDate);
+      if(rentDate < returnDate){
+        return this.toastrService.error('Bu araç bu tarihler arasında kiralanamaz','Geçersiz tarih seçimi')
+      }
+      this.createRental();
+      return true;
+    })
+  }
+
   createRental(){
     let createdRental : Rental ={
       carId: this.car.carId,
@@ -84,7 +106,8 @@ export class RentalComponent implements OnInit {
     };
     if(createdRental.customerId == undefined || createdRental.rentDate == undefined){
       this.toastrService.error('Eksik bilgi girdiniz','Bilgilerinizi kontrol ediniz')
-    }else{
+    }
+    else{
       this.router.navigate(['/payment/',JSON.stringify(createdRental)]);
       this.toastrService.info('Ödeme sayfasına yönlendiriliyorsunuz.','Ödeme İşlemleri')
     }
@@ -117,5 +140,8 @@ export class RentalComponent implements OnInit {
     this.minDate = event.target.value;
     this.firstDateSelected = true;
   }
+
+
+
 
 }

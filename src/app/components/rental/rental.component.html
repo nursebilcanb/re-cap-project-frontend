@@ -24,19 +24,19 @@
         ></button>
       </div>
       <div class="modal-body">
-        <div class="form-group row mb-2">
-          <label for="automatic-output" class="col-4 col-form-label"
+         <div class="form-group row mb-2">
+          <label for="example-date-input" class="col-4 col-form-label"
             >Günlük Fiyat</label
           >
            <div class="col-8">
             <input
-              type="number"
+              type="text"
               disabled="disabled"
               class="form-control"
-             [value]="car?.dailyPrice | currency: '₺'"
+            [value]="car?.dailyPrice | currency: '₺'"
             /> 
           </div> 
-        </div>
+        </div> 
         <div class="form-group row mb-2">
           <label for="customer-input" class="col-4 col-form-label"
             >Müşteri</label
@@ -88,12 +88,12 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >
           Vazgeç
         </button>
         <button
           data-bs-dismiss="modal"
-          (click)="createRental()"
+          (click)="checkRentableCar()"
           type="button"
           class="btn btn-success"
         >
