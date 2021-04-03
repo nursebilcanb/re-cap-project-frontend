@@ -13,6 +13,7 @@ import { CarService } from 'src/app/services/car.service';
 export class CarDetailComponent implements OnInit {
 
   carImages:CarImage[];
+  carId:number;
   car:Car;
   currentCar:Car;
   imageUrl = 'https://localhost:44384/Images/';
@@ -24,6 +25,7 @@ export class CarDetailComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       if(params["carId"]){
+        this.carId = params["carId"];
         this.getCarDetails(params["carId"]);
         this.getCarImagesByCarId(params["carId"]);
       }

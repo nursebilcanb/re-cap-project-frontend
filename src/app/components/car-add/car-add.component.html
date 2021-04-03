@@ -1,0 +1,79 @@
+<br>
+<br>
+<div class="content">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="title">Araç Ekle</h5>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="carAddForm">
+                    <!-- <div class="mb-3">
+                        <label for="brandName">Marka Adı</label>
+                        <div class="form-group">
+                            <input type="text" id="brandName" formControlName="brandName" class="form-control"
+                                placeholder="Marka Adı" />
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="colorName">Renk Adı</label>
+                        <div class="form-group">
+                            <input type="text" id="colorName" formControlName="colorName" class="form-control"
+                                placeholder="Renk Adı" />
+                        </div>
+                    </div> -->
+
+
+                    <div class="form-floating mb-3">
+                        <select class="form-select" id="brands" formControlName="brandId">
+                            <option value="">-- Marka Seçiniz --</option>
+
+                            <option *ngFor="let brand of brands" [ngValue]="brand.brandId">
+                                {{ brand.brandName }}
+                            </option>
+                        </select>
+                        <label for="brands">Markalar</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <select class="form-select" id="colors" formControlName="colorId">
+                            <option value="">-- Renk Seçiniz --</option>
+
+                            <option *ngFor="let color of colors" [ngValue]="color.colorId">
+                                {{ color.colorName }}
+                            </option>
+                        </select>
+                        <label for="colors">Renkler</label>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="modelYear">Model Yılı</label>
+                        <div class="form-group">
+                            <input type="text" id="modelYear" formControlName="modelYear" class="form-control"
+                                placeholder="Model Yılı" />
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="dailyPrice">Günlük Kiralama Fiyatı</label>
+                        <div class="form-group">
+                            <input type="number" id="dailyPrice" formControlName="dailyPrice" class="form-control"
+                                placeholder="Günlük Kiralama Fiyatı" />
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description">Açıklama</label>
+                        <div class="form-group">
+                            <input type="text" id="description" formControlName="description" class="form-control"
+                                placeholder="Açıklama" />
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-fill btn-success" (click)=add()>Ekle</button>
+            </div>
+        </div>
+    </div>
+
+</div>

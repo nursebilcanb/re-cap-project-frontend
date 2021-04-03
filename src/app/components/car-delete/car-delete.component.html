@@ -1,0 +1,34 @@
+<br>
+<br>
+<br>
+
+  <table *ngIf="dataLoaded == true" id="carsTable" class="table table-striped" cellspacing="0" width="100%">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Marka</th>
+        <th>Renk</th>
+        <th>Model Yılı</th>
+        <th>Günlük Fiyat</th>
+        <th>Açıklama</th>
+        <th style="text-align: center; width: 100px">
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let car of cars">
+        <td>{{ car.carId }}</td>
+        <td>{{ car.brandName }}</td>
+        <td>{{ car.colorName }}</td>
+        <td>{{ car.modelYear }}</td>
+        <td>{{ car.dailyPrice }}</td>
+        <td>{{ car.description }}</td>
+        <td>
+          <div class="d-flex justify-content-center">
+          <button routerLink="/cars/update/{{car.carId}}" class="btn btn-success px-4" style="margin-right: 20px;" >Güncelle</button>
+          <button class="btn btn-danger px-3" (click)="delete(car)">Sil</button>
+      </div>
+      </td>
+      </tr>
+    </tbody>
+  </table>

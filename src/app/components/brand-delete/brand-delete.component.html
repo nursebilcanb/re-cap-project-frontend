@@ -1,0 +1,41 @@
+<br>
+<br>
+<br>
+  <!-- <table *ngIf="dataLoaded==true" class="table table-success table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Marka Adı</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let brand of brands">
+        <td>{{brand.brandId}}</td>
+        <td>{{brand.brandName}}</td>
+      </tr>
+    </tbody>
+  </table> -->
+
+
+  <table *ngIf="dataLoaded == true" id="brandsTable" class="table table-striped" cellspacing="0" width="100%">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Marka Adı</th>
+        <th style="text-align: center; width: 100px">
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let brand of brands">
+        <td>{{ brand.brandId }}</td>
+        <td>{{ brand.brandName }}</td>
+        <td>
+          <div class="d-flex justify-content-center">
+          <button routerLink="/brands/update/{{brand.brandId}}" class="btn btn-success px-4" style="margin-right: 20px;" >Güncelle</button>
+          <button class="btn btn-danger px-3" (click)="delete(brand)">Sil</button>
+      </div>
+      </td>
+      </tr>
+    </tbody>
+  </table>

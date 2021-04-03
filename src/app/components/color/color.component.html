@@ -5,6 +5,7 @@
  <div class="d-grid gap-2">
    <button class="btn btn-success" type="button">Renkler</button>
  </div>
+ 
 <br>
   <div class="mb-3">
     <label for="filterText" class="form-label">Renk Ara</label>
@@ -14,6 +15,14 @@
   <div *ngIf="filterText" class="alert alert-success">
     {{filterText}} aradınız
   </div> 
+  <ul *ngIf="dataLoaded==false"  class="list-group">
+    <!-- <li class="list-group-item active" aria-current="true">Markalar</li> -->
+    <div class="d-flex justify-content-center">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </ul>  
 
 <br>
 <ul class="list-group">

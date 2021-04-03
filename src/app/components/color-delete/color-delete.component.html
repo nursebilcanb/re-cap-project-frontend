@@ -1,0 +1,27 @@
+<br>
+<br>
+<br>
+
+
+  <table *ngIf="dataLoaded == true" id="colorsTable" class="table table-striped" cellspacing="0" width="100%">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Renk Adı</th>
+        <th style="text-align: center; width: 100px">
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let color of colors">
+        <td>{{ color.colorId }}</td>
+        <td>{{ color.colorName }}</td>
+        <td>
+          <div class="d-flex justify-content-center">
+          <button routerLink="/colors/update/{{color.colorId}}" class="btn btn-success px-4" style="margin-right: 20px;" >Güncelle</button>
+          <button class="btn btn-danger px-3" (click)="delete(color)">Sil</button>
+      </div>
+      </td>
+      </tr>
+    </tbody>
+  </table>

@@ -1,0 +1,24 @@
+<br>
+<br>
+<div class="content" *ngIf="color">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="title">Renk Güncelle</h5>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="colorUpdateForm">
+                    <div class="mb-3">
+                        <label for="colorName">Renk Adı</label>
+                        <div class="form-group">
+                            <input type="text"  formControlName="colorName" class="form-control" placeholder="Renk Adı" />
+                        </div>
+                    </div> 
+                </form>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-fill btn-success" (click)=update()>Güncelle</button>
+            </div>
+        </div>
+    </div>
+</div>

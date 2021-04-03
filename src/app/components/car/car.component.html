@@ -47,7 +47,7 @@
 
 <div class="row">
   <div *ngFor="let car of cars |carFilterPipe:filterText " class="card" style="width: 18rem;">
-    <img src="{{imageUrl}}{{car.imagePath}}" routerLink="/cars/cardetail/{{car.carId}}" class="card-img-top">
+    <img src="{{imageUrl}}{{car.imagePath?car.imagePath:defaultImage}}" routerLink="/cars/cardetail/{{car.carId}}" class="card-img-top">
     <div class="card-body">
       <h5 class="card-title">{{car.description}}</h5>
     </div>
