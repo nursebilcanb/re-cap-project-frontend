@@ -8,11 +8,13 @@
             <th>Id</th>
             <th>Kullanıcı Id</th>
             <th>Şirket Adı</th>
+            <th>Findex Puanı</th>
         </tr>
     </thead>
     <tr *ngFor="let customer of customers">
         <td>{{customer.customerId}}</td>
         <td>{{customer.userId}}</td>
         <td>{{customer.companyName}}</td>
+        <td>{{customer.findexPoint}}</td>
     </tr>
 </table>

@@ -8,5 +8,6 @@ export interface Car{
     dailyPrice:number,
     description:string,
     imagePath:string,
-    status: boolean
+    status: boolean,
+    findexPoint:number
 }

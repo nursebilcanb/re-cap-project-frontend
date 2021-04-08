@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -29,6 +29,12 @@ import { BrandDeleteComponent } from './components/brand-delete/brand-delete.com
 import { ColorDeleteComponent } from './components/color-delete/color-delete.component';
 import { ColorUpdateComponent } from './components/color-update/color-update.component';
 import { CarDeleteComponent } from './components/car-delete/car-delete.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { RegisterComponent } from './components/register/register.component';
+import { AuthMenuComponent } from './components/navi/auth-menu/auth-menu.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { CardSavedComponent } from './components/payment/card-saved/card-saved.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +59,12 @@ import { CarDeleteComponent } from './components/car-delete/car-delete.component
     BrandDeleteComponent,
     ColorDeleteComponent,
     ColorUpdateComponent,
-    CarDeleteComponent
+    CarDeleteComponent,
+    LoginComponent,
+    RegisterComponent,
+    AuthMenuComponent,
+    ProfileComponent,
+    CardSavedComponent
 
   ],
   imports: [
@@ -67,7 +78,9 @@ import { CarDeleteComponent } from './components/car-delete/car-delete.component
       positionClass:"toast-bottom-right"
     })
   ],
-  providers: [],
+  providers: [
+    {provide:HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi:true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

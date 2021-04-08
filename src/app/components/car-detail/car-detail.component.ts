@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Car } from 'src/app/models/car';
 import { CarImage } from 'src/app/models/carImage';
+import { AuthService } from 'src/app/services/auth.service';
 import { CarImageService } from 'src/app/services/car-image.service';
 import { CarService } from 'src/app/services/car.service';
 
@@ -19,8 +20,11 @@ export class CarDetailComponent implements OnInit {
   imageUrl = 'https://localhost:44384/Images/';
   dataLoaded =false;
 
+
   constructor(private carImageService:CarImageService,
-    private carService:CarService,private activatedRoute:ActivatedRoute) { }
+    private carService:CarService,
+    private activatedRoute:ActivatedRoute,
+    private authService:AuthService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -55,6 +59,11 @@ export class CarDetailComponent implements OnInit {
       this.dataLoaded=true;
     })
   }
+
+  isAuthenticate():boolean{
+    return this.authService.isAuthenticated();
+  }
+  
   getSliderClassName(index:number){
     if(index == 0){
       return "carousel-item active";

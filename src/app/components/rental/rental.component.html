@@ -87,18 +87,39 @@
         </div>
       </div>
     </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >
-        Vazgeç
-      </button>
-      <button
-        data-bs-dismiss="modal"
-        (click)="checkRentableCar()"
-        type="button"
-        class="btn btn-success"
-      >
-        Kirala
-      </button>
+    <div *ngIf="isLogin()">
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" routerLink="/cars">
+          Vazgeç
+        </button>
+        <button *ngIf="isLogin()"
+          data-bs-dismiss="modal"
+          (click)="checkFindexPoint()"
+          type="button"
+          class="btn btn-success"
+        >
+          Kirala
+        </button>
+      </div>
     </div>
+    <div *ngIf="!isLogin()">
+      <div class="alert alert-secondary text-center lead fw-normal">
+        Araba kiralamak için önce giriş yapmalısınız
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" routerLink="/cars">
+          Vazgeç
+        </button>
+        <button 
+          data-bs-dismiss="modal"
+          disabled="disabled"
+          type="button"
+          class="btn btn-success"
+        >
+          Kirala
+        </button>
+      </div>
+    </div>
+
   </div>
 </div>

@@ -1,161 +1,93 @@
-
-
-<!-- 
-<div class="container">
-  <div class="col-sm"></div>
-
-  <div class="col-sm">
-    <div *ngFor="let car of cars" class="card" style="width: 18rem">
-      <div *ngFor="let image of carImages">
-        <img
-          src= "{{imageUrl}}{{image.imagePath}}"
-          class=""
-          style="height: 100%; width: 100%; object-fit: contain"
-          [alt]="imageUrl + image.imagePath"
-        />
-      </div>
-
-      <div class="container">
-        <h5 class="card-title">{{ car.description }}</h5>
-      </div>
-      <ul class="list-group list-group-flush">
-        
-        <li class="list-group-item">
-          <mark>Marka</mark> : {{ car.brandName }}
-        </li>
-        <li class="list-group-item"><mark>Renk</mark> : {{ car.colorName }}</li>
-        <li class="list-group-item">
-          <mark>Model </mark> : {{ car.modelYear }}
-        </li>
-        <li class="list-group-item">
-          <mark>Günlük Kiralama Fiyatı </mark>: {{ car.dailyPrice }}
-        </li>
-      </ul>
-    </div>
-    <div class="card-body">
-      <a
-        routerLink="/cars/rent"
-        class="card-link btn btn-primary"
-        style="align-items: center"
-        >Drive Now!</a
-      >
-    </div>
-    <div class="col-md-4"></div>
+<div class="row">
+  <div class="col-md-2">
+    <app-brand></app-brand>
   </div>
-</div>
- -->
+  <div class="col-md-8">
+    <br>
+    <div *ngIf="dataLoaded==false" class="d-flex justify-content-center">
+      <div class="spinner-border text-success" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+    <div *ngIf="dataLoaded==true" class="card mb-3">
 
-
-
-
-
-
- <div *ngIf="dataLoaded==false" class="d-flex justify-content-center">
-  <div class="spinner-border text-success" role="status">
-      <span class="visually-hidden">Loading...</span>
-  </div>
-</div>
-<div *ngIf="dataLoaded==true" class="card mb-3">
-
-  <!-- <div *ngFor="let car of cars" class="card-header text-center">
+      <!-- <div *ngFor="let car of cars" class="card-header text-center">
     <strong>
         {{car.brandName}} - {{car.modelYear}}
     </strong>
   </div> -->
 
-<div *ngIf="dataLoaded == true" class="mx-auto">
-  <br>
-  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <div *ngFor="let carImage of carImages let i = index" [class]="getSliderClassName(i)">
-        <img src="{{imageUrl}}{{carImage.imagePath}}" class="d-block w-100" alt="...">
+      <div *ngIf="dataLoaded == true" class="mx-auto">
+        <br>
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div *ngFor="let carImage of carImages let i = index" [class]="getSliderClassName(i)">
+              <img src="{{imageUrl}}{{carImage.imagePath}}" class="d-block w-100" alt="...">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+
+      <table class="table table-success table-striped">
+
+        <body>
+          <ul *ngIf="dataLoaded==true" class="list-group">
+            <li (click)="setCurrentCar(car)" routerLink="/cars/cardetail/{{car?.carId}}"
+              [class]="getCurrentCarClass(car)">
+              <tr><strong>Marka: </strong> {{car?.brandName}}</tr>
+              <tr><strong>Model: </strong> {{car?.modelYear}}</tr>
+              <tr><strong>Renk: </strong> {{car?.colorName}}</tr>
+              <tr><strong>Günlük Kiralama Fiyatı: </strong> {{car?.dailyPrice |currency :
+                'TRY':'symbol-narrow':'1.2-2'}}</tr>
+              <tr><strong>Açıklama: </strong> {{car?.description}}</tr>
+            </li>
+          </ul>
+        </body>
+      </table>
+
+
+      <div class="d-grid gap-2">
+        <button routerLink="/cars/rental/{{carId}}" type="button" class="btn btn-success" data-bs-toggle="modal"
+          data-bs-target="#exampleModal">
+          Aracı Kirala
+        </button>
+      </div>
+
+      <div class="card-body d-grid gap-2 mx-auto">
+        <div *ngIf="!car?.status" class="btn-group me-2">
+          <div style="margin: auto;">
+            <div class="modal fade" id="rentCar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <app-rental [car]="car"></app-rental>
+            </div>
+          </div>
+        </div>
+        <div class="d-grid gap-2 mb-2" *ngIf="!car.status">
+          <div class="alert alert-danger">Araç Şu an Kiralanamaz</div>
+        </div>
       </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-    </div>  
-  </div> 
-
-  <table class="table table-success table-striped">
-    <body>
-    <ul *ngIf="dataLoaded==true" class="list-group">
-      <li (click)="setCurrentCar(car)" routerLink="/cars/cardetail/{{car?.carId}}"  
-      [class]="getCurrentCarClass(car)">
-             <tr><strong>Marka: </strong> {{car?.brandName}}</tr>
-             <tr><strong>Model: </strong> {{car?.modelYear}}</tr>
-             <tr><strong>Renk: </strong> {{car?.colorName}}</tr>
-             <tr><strong>Günlük Kiralama Fiyatı: </strong> {{car?.dailyPrice |currency : 'TRY':'symbol-narrow':'1.2-2'}}</tr>
-             <tr><strong>Açıklama: </strong> {{car?.description}}</tr>
-    </li>
-    </ul>
-  </body>
-  </table>  
-
-
-  <div class="d-grid gap-2">
-    <button  routerLink="/cars/rental/{{carId}}" 
-     type="button"
-     class="btn btn-success"
-     data-bs-toggle="modal"
-     data-bs-target="#exampleModal"
-   >
-     Aracı Kirala
-   </button>
- </div>  
-
-  <div class="card-body d-grid gap-2 mx-auto">
-    <div *ngIf="car.status==true" class="btn-group me-2">
-      <div style="margin: auto;">
-        <div
-        class="modal fade"
-        id="rentCar"
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
->
-        <app-rental [car]="car"></app-rental>
+    <div *ngIf="!isAuthenticate()">
+      <div class="alert alert-secondary text-center lead fw-normal">
+        Araba kiralamak için önce giriş yapmalısınız
       </div>
     </div>
   </div>
-  <div class="d-grid gap-2 mb-2" *ngIf="car.status==false">
-    <div class="alert alert-danger">Araç Şu an Kiralanamaz</div>
+  <div class="col-md-2">
+    <app-color></app-color>
   </div>
 </div>
 
-
-<!-- 
-    <table class="table table-success table-striped">
-      <thead>
-          <tr>
-              <th>Araba Numarası</th>
-              <th>Marka</th>
-              <th>Renk</th>
-              <th>Model</th>
-              <th>Günlük Kirası</th>
-              <th>Açıklama</th>
-          </tr>
-      </thead>
-      <tr *ngFor="let car of cars">
-          <td>{{car.carId}}</td>
-          <td>{{car.brandName}}</td>
-          <td>{{car.colorName}}</td>
-          <td>{{car.modelYear}}</td>
-          <td>{{car.dailyPrice}}</td>
-          <td>{{car.description}}</td>
-      </tr>
-  </table>  -->
-
-
- 
-
-
-<!-- 
+  <!-- 
  <div class="row">
   <div class="col-md-6">
     <section style="float:left;">
@@ -170,11 +102,3 @@
     </section> 
   </div>
 </div>  -->
-
-
-
-  
-
-  
-
-

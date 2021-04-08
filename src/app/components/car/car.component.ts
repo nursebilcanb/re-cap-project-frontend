@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Car } from 'src/app/models/car';
 import { CarService } from 'src/app/services/car.service';
+import { CustomerService } from 'src/app/services/customer.service';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
   selector: 'app-car',
@@ -19,7 +21,10 @@ export class CarComponent implements OnInit {
   defaultImage="logo.jpg";
 
   constructor(private carService:CarService, 
-    private activatedRoute:ActivatedRoute,private toastrService:ToastrService) { }
+    private activatedRoute:ActivatedRoute,
+    private toastrService:ToastrService,
+    private localStorageService:LocalStorageService,
+    private customerService:CustomerService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params =>{
@@ -80,8 +85,7 @@ export class CarComponent implements OnInit {
       }
     })
   }
+
   
-  // getRent(car:Car){
-  //   this.toastrService.success("Sepete eklendi",car.brandName)
-  // }
+
 }

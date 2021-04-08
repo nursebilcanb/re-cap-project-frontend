@@ -73,6 +73,11 @@
             </div>
         </div>
     </div>
+    <div class="checkbox mb-3 text-center">
+        <label>
+          <input type="checkbox" value="remember-me" [(ngModel)]="save"> Kartımı Kaydet
+        </label>
+      </div>
     <div class="card-footer">
         <div class="row">
             <button (click)="rentACar()" class="btn btn-success">
@@ -81,4 +86,5 @@
             </button>
         </div>
     </div>
+    <app-card-saved (selectedCard)="selectedCard($event)"></app-card-saved>
 </div>

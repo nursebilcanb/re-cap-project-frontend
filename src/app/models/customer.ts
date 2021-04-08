@@ -5,5 +5,7 @@ export interface Customer{
     firstName:string,
     lastName:string,
     email:string,
-    status:boolean
+    password?:string,
+    status:boolean,
+    findexPoint:number
 }

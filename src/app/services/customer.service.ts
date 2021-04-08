@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Customer } from '../models/customer';
 import { ListResponseModel } from '../models/listResponseModel';
+import { SingleResponseModel } from '../models/singleResponseModel';
 
 @Injectable({
   providedIn: 'root'
@@ -22,4 +23,10 @@ export class CustomerService {
     let newPath = this.apiUrl+"customers/getbyid?id="+customerId;
     return this.httpClient.get<ListResponseModel<Customer>>(newPath);
   }
+
+  getCustomerByEmail(email:string):Observable<SingleResponseModel<Customer>>{
+    let newPath = this.apiUrl + "customers/getcustomerbyemail?email="+email;
+    return this.httpClient.get<SingleResponseModel<Customer>>(newPath);
+  }
+
 }

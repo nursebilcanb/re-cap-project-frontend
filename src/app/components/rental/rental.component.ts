@@ -5,8 +5,10 @@ import { ToastrService } from 'ngx-toastr';
 import { Car } from 'src/app/models/car';
 import { Customer } from 'src/app/models/customer';
 import { Rental } from 'src/app/models/rental';
+import { AuthService } from 'src/app/services/auth.service';
 import { CarService } from 'src/app/services/car.service';
 import { CustomerService } from 'src/app/services/customer.service';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { RentalService } from 'src/app/services/rental.service';
 
 @Component({
@@ -40,7 +42,9 @@ export class RentalComponent implements OnInit {
     private router:Router,
     private datePipe:DatePipe,
     private carService:CarService,
-    private activatedRoute:ActivatedRoute) { }
+    private activatedRoute:ActivatedRoute,
+    private authService:AuthService,
+    private localStorageService:LocalStorageService) { }
 
   ngOnInit(): void {
      this.activatedRoute.params.subscribe(params => {
@@ -72,7 +76,8 @@ export class RentalComponent implements OnInit {
     })
   }
 
-  checkRentableCar(){
+  checkRentableCar(){ 
+
     this.rentalService.getRentalById(this.carId).subscribe(response => {
       if(response.data[0]==null){
         this.createRental();
@@ -90,6 +95,7 @@ export class RentalComponent implements OnInit {
       this.createRental();
       return true;
     })
+
   }
 
   createRental(){
@@ -142,6 +148,31 @@ export class RentalComponent implements OnInit {
   }
 
 
+  isLogin(){
+    if(this.authService.isAuthenticated()){
+      return true;
+    }
+    return false;
+  }
+
+  checkFindexPoint(){
+    this.carService.getCarDetails(this.carId).subscribe(response => {
+      
+      let customer = this.localStorageService.getCurrentCustomer();
+
+      if(customer.findexPoint === 0){
+        this.toastrService.warning("Kullanıcının findeks puanı sıfırdır","Dikkat");
+        return  this.router.navigateByUrl("/cars");
+      }
+
+      let car:Car = response.data[0];
+      if(customer.findexPoint < car.findexPoint){
+        this.toastrService.warning("Findeks puanınız yetersiz","Dikkat");
+        return  this.router.navigate(["/cars"]);
+      }
+      return this.checkRentableCar();
+    })
+  }
 
 
 }
