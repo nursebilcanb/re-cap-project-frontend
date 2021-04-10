@@ -21,6 +21,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   customer: Customer;
 
+
   constructor(private formBuilder: FormBuilder,
     private toastrService: ToastrService,
     private customerService: CustomerService,
@@ -36,9 +37,11 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       firstName: ["", Validators.required],
       lastName: ["", Validators.required],
+      companyName: ["",Validators.required],
       email: ["", Validators.required],
       password: ["", Validators.required],
-      confirmPassword: ["", Validators.required]
+      confirmPassword: ["", Validators.required],
+      findexPoint: [70,Validators.required]
     })
   }
 
@@ -57,8 +60,7 @@ export class RegisterComponent implements OnInit {
     let registerModel: RegisterModel = Object.assign({}, this.registerForm.value);
 
     this.authService.register(registerModel).subscribe(response => {
-      this.localStorageService.setToken("token", response.data);
-      console.log(registerModel.firstName);
+      this.localStorageService.setToken("token",response.data.token);
       this.getCustomerByEmail(registerModel.email);
       this.toastrService.success("Kayıt oldunuz", "Başarılı");
 
@@ -78,9 +80,9 @@ export class RegisterComponent implements OnInit {
 
   getCustomerByEmail(email: string) {
     this.customerService.getCustomerByEmail(email).subscribe(response => {
-      this.customer = response.data;
+      this.customer = response.data; 
       this.localStorageService.setCurrentCustomer(this.customer);
     });
   }
-
+ 
 }

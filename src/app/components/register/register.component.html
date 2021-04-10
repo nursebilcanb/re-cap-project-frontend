@@ -5,34 +5,41 @@
             <img class="mb-4" src="{{imageUrl}}{{defaultImage}}" alt="" width="90" height="70">
             <h1 class="h3 mb-3 fw-normal">Kayıt Ol</h1>
 
-            <div class="form-floating">
-                <input formControlName="firstName" type="text" class="form-control" id="floatingInput"
-                    placeholder="İsminiz">
-                <label for="floatingInput">Ad</label>
+            <div class="form-floating mb-3">
+                <input formControlName="firstName" type="text" class="form-control" id="firstName"
+                    placeholder="firstName">
+                <label for="firstName">Ad</label>
+            </div>
+            
+
+            <div class="form-floating mb-3">
+                <input formControlName="lastName" type="text" class="form-control" id="lastName"
+                    placeholder="lastName">
+                <label for="lastName">Soyad</label>
             </div>
 
-            <div class="form-floating">
-                <input formControlName="lastName" type="text" class="form-control" id="floatingInput"
-                    placeholder="Soy İsminiz">
-                <label for="floatingInput">Soyad</label>
+            <div class="form-floating mb-3">
+                <input formControlName="companyName" type="text" class="form-control" id="companyName"
+                    placeholder="companyName">
+                <label for="companyName">Şirket İsmi</label>
             </div>
 
-            <div class="form-floating">
-                <input formControlName="email" type="email" class="form-control" id="floatingInput"
+            <div class="form-floating mb-3">
+                <input formControlName="email" type="email" class="form-control" id="email"
                     placeholder="name@example.com">
-                <label for="floatingInput">E-posta</label>
+                <label for="email">E-posta</label>
             </div>
 
-            <div class="form-floating">
-                <input formControlName="password" type="password" class="form-control" id="floatingPassword"
-                    placeholder="Şifre">
-                <label for="floatingPassword">Parola</label>
+            <div class="form-floating mb-3">
+                <input formControlName="password" type="password" class="form-control" id="password"
+                    placeholder="password">
+                <label for="password">Parola</label>
             </div>
 
-            <div class="form-floating">
-                <input formControlName="confirmPassword" type="password" class="form-control" id="floatingPassword"
-                    placeholder="Şifrenizi doğrulayın">
-                <label for="floatingPassword">Şifre Doğrula</label>
+            <div class="form-floating mb-3">
+                <input formControlName="confirmPassword" type="password" class="form-control" id="confirmPassword"
+                    placeholder="confirmPassword">
+                <label for="confirmPassword">Şifre Doğrula</label>
             </div>
             <button class="w-100 btn btn-lg btn-primary" type="submit" (click)="register()">Kayıt Ol</button>
             <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>

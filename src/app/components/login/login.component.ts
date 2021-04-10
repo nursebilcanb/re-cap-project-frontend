@@ -75,7 +75,6 @@ export class LoginComponent implements OnInit {
   getCustomerByEmail(email:string){
     this.customerService.getCustomerByEmail(email).subscribe(response => {
       this.customer = response.data;
-      console.log(response.data);
       this.localStorageService.setCurrentCustomer(this.customer);
 
     })
