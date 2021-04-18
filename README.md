@@ -1,5 +1,5 @@
 ## HOME
-![Home](https://github.com/nursebilcanb/re-cap-project-frontend/blob/main/src/assets/images/homePage.png)
+![Home](https://github.com/nursebilcanb/re-cap-project-frontend/main/src/assets/images/homePage.png)
 ![Home](https://github.com/nursebilcanb/re-cap-project-frontend/blob/main/src/assets/images/loginedPage2.png)
 ![Home](https://github.com/nursebilcanb/re-cap-project-frontend/blob/main/src/assets/images/loginedPage.png)
 ![Home](https://github.com/nursebilcanb/re-cap-project-frontend/blob/main/src/assets/images/registeredPage.png)
