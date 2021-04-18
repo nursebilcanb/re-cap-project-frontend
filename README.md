@@ -1,3 +1,25 @@
+## HOME
+![Home](https://github.com/nursebilcanb/re-cap-project-frontend/blob/main/src/assets/images/homePage.png)
+![Home](https://github.com/nursebilcanb/re-cap-project-frontend/blob/main/src/assets/images/loginedPage2.png)
+![Home](https://github.com/nursebilcanb/re-cap-project-frontend/blob/main/src/assets/images/loginedPage.png)
+![Home](https://github.com/nursebilcanb/re-cap-project-frontend/blob/main/src/assets/images/registeredPage.png)
+
+## LOGOUT
+![Home](https://github.com/nursebilcanb/re-cap-project-frontend/blob/main/src/assets/images/logoutPage.png)
+
+## FILTERS
+![Home](https://github.com/nursebilcanb/re-cap-project-frontend/blob/main/src/assets/images/filtered3.png)
+![Home](https://github.com/nursebilcanb/re-cap-project-frontend/blob/main/src/assets/images/filtered1.png)
+![Home](https://github.com/nursebilcanb/re-cap-project-frontend/blob/main/src/assets/images/filtered2.png)
+
+![Home](https://github.com/nursebilcanb/re-cap-project-frontend/blob/main/src/assets/images/filter3.png)
+![Home](https://github.com/nursebilcanb/re-cap-project-frontend/blob/main/src/assets/images/filter1.png)
+![Home](https://github.com/nursebilcanb/re-cap-project-frontend/blob/main/src/assets/images/filter2.png)
+
+## PAYMENT and RENTAL
+![Home](https://github.com/nursebilcanb/re-cap-project-frontend/blob/main/src/assets/images/paymentPage.png)
+![Home](https://github.com/nursebilcanb/re-cap-project-frontend/blob/main/src/assets/images/rentalPage.png)
+![Home](https://github.com/nursebilcanb/re-cap-project-frontend/blob/main/src/assets/images/invaliddatechoice.png)
 
 # Rentcardatabase
 
